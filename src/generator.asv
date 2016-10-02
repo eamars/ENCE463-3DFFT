@@ -1,0 +1,10 @@
+% Ran Bao
+% University of Canterbury
+clc;
+clear;
+close all;
+
+% generate a 3d array
+A = rand(4, 4, 4);
+
+mesh();
