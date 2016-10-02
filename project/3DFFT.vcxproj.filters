@@ -2,5 +2,11 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\utils.cpp" />
+    <ClCompile Include="..\src\opencl.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\opencl.hpp" />
+    <ClInclude Include="..\src\utils.hpp" />
   </ItemGroup>
 </Project>

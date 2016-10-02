@@ -20,6 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\opencl.cpp" />
+    <ClCompile Include="..\src\utils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\opencl.hpp" />
+    <ClInclude Include="..\src\utils.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CC1F2928-9332-4CD6-8523-7DA3BF74BA2D}</ProjectGuid>
