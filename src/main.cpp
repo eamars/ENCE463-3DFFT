@@ -10,8 +10,9 @@ using std::string;
 
 int main(void)
 {
-	run_opencl(2);
-	run_cuda(2);
+	run_opencl_cpu(4);
+	run_opencl_gpu(4);
+	run_cuda(4);
 
 	return 0;
 

@@ -4,9 +4,11 @@
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\utils.cpp" />
     <ClCompile Include="..\src\opencl.cpp" />
+    <ClCompile Include="..\src\cuda.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\opencl.hpp" />
     <ClInclude Include="..\src\utils.hpp" />
+    <ClInclude Include="..\src\cuda.hpp" />
   </ItemGroup>
 </Project>

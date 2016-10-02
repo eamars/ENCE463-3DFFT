@@ -37,10 +37,10 @@ void matrix_generator(double *X, size_t dimensions[3])
 				X[idx] = (A1i + A0i / A1i)*dti*(A1j + A0j / A1j)*dtj*(A1k + A0k / A1k)*dtk;
 				X[idx + 1] = 0.0;
 
-				printf("(%f, %f) ", X[idx], X[idx + 1]);
+				// printf("(%f, %f) ", X[idx], X[idx + 1]);
 			}
-			printf("\n");
+			// printf("\n");
 		}
-		printf("\n");
+		// printf("\n");
 	}
 }
