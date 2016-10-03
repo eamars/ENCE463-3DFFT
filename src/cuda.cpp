@@ -68,6 +68,7 @@ float run_cuda(int N)
 	// copy device memory to host
 	cudaMemcpy(host_signal, device_signal, mem_size, cudaMemcpyDeviceToHost);
 
+	/*
 	printf("CUDA result\n");
 	for (size_t i = 0; i<n[0]; ++i) {
 		for (size_t j = 0; j<n[1]; ++j) {
@@ -79,7 +80,7 @@ float run_cuda(int N)
 		}
 		printf("\n");
 	}
-	
+	*/
 
 	// destroy cufft context
 	cufftDestroy(plan);

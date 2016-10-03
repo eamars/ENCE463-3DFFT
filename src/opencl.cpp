@@ -137,6 +137,7 @@ float run_opencl_cpu(int N)
 	// fetch the result
 	err = clEnqueueReadBuffer(queue, cl_buffer, CL_TRUE, 0, buffer_size, X, 0, NULL, NULL);
 
+	/*
 	// print the output array
 	printf("OpenCL CPU result\n");
 	for (size_t i = 0; i<N0; ++i) {
@@ -149,6 +150,7 @@ float run_opencl_cpu(int N)
 		}
 		printf("\n");
 	}
+	*/
 
 	// release the opencl memory object
 	clReleaseMemObject(cl_buffer);
