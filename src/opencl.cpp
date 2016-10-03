@@ -143,6 +143,12 @@ int run_opencl_cpu(int N)
 	// wait for calculation to be finished
 	err = clFinish(queue);
 
+	// print performance
+	clGetEventProfilingInfo(event, CL_PROFILING_COMMAND_START, sizeof(time_start), &time_start, NULL);
+	clGetEventProfilingInfo(event, CL_PROFILING_COMMAND_END, sizeof(time_end), &time_end, NULL);
+	time_interval = time_end - time_start;
+	printf("Total time taken for performing FFT on CPU: %0.6f\n", (time_interval / 1000000.0f));
+
 	// fetch the result
 	err = clEnqueueReadBuffer(queue, cl_buffer, CL_TRUE, 0, buffer_size, X, 0, NULL, NULL);
 
@@ -153,6 +159,9 @@ int run_opencl_cpu(int N)
 	clfftTeardown();
 
 	// print the output array
+	
+	printf("OpenCL CPU result");
+	
 	/*
 	for (size_t i = 0; i<N0; ++i) {
 		for (size_t j = 0; j<N1; ++j) {
@@ -165,14 +174,9 @@ int run_opencl_cpu(int N)
 		printf("\n");
 	}
 	*/
+
 	free(X);
 
-	// print performance
-	clGetEventProfilingInfo(event, CL_PROFILING_COMMAND_START, sizeof(time_start), &time_start, NULL);
-	clGetEventProfilingInfo(event, CL_PROFILING_COMMAND_END, sizeof(time_end), &time_end, NULL);
-	time_interval = time_end - time_start;
-
-	printf("Total time taken for performing FFT on CPU: %0.6f\n", (time_interval / 1000000.0f));
 
 	// release opencl working objects
 	clReleaseCommandQueue(queue_cpu);
@@ -323,6 +327,12 @@ int run_opencl_gpu(int N)
 	// wait for calculation to be finished
 	err = clFinish(queue);
 
+	// print performance
+	clGetEventProfilingInfo(event, CL_PROFILING_COMMAND_START, sizeof(time_start), &time_start, NULL);
+	clGetEventProfilingInfo(event, CL_PROFILING_COMMAND_END, sizeof(time_end), &time_end, NULL);
+	time_interval = time_end - time_start;
+	printf("Total time taken for performing FFT on GPU: %0.6f\n", (time_interval / 1000000.0f));
+
 	// fetch the result
 	err = clEnqueueReadBuffer(queue, cl_buffer, CL_TRUE, 0, buffer_size, X, 0, NULL, NULL);
 
@@ -333,26 +343,23 @@ int run_opencl_gpu(int N)
 	clfftTeardown();
 
 	// print the output array
+	
+	printf("OpenCL GPU Result\n");
+	
 	/*
 	for (size_t i = 0; i<N0; ++i) {
-	for (size_t j = 0; j<N1; ++j) {
-	for (size_t k = 0; k<N2; ++k) {
-	size_t idx = 2 * (k + j*N2 + i*N1*N2);
-	printf("(%f, %f) ", X[idx], X[idx + 1]);
-	}
-	printf("\n");
-	}
-	printf("\n");
+		for (size_t j = 0; j<N1; ++j) {
+			for (size_t k = 0; k<N2; ++k) {
+				size_t idx = 2 * (k + j*N2 + i*N1*N2);
+				printf("(%f, %f) ", X[idx], X[idx + 1]);
+			}
+			printf("\n");
+		}
+		printf("\n");
 	}
 	*/
+
 	free(X);
-
-	// print performance
-	clGetEventProfilingInfo(event, CL_PROFILING_COMMAND_START, sizeof(time_start), &time_start, NULL);
-	clGetEventProfilingInfo(event, CL_PROFILING_COMMAND_END, sizeof(time_end), &time_end, NULL);
-	time_interval = time_end - time_start;
-
-	printf("Total time taken for performing FFT on GPU: %0.6f\n", (time_interval / 1000000.0f));
 
 	// release opencl working objects
 	clReleaseCommandQueue(queue_cpu);
