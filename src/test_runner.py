@@ -8,5 +8,6 @@ for i in range(1, 513):
 
 	print(i)
 	fp.write(out)
+	fp.flush()
 
 fp.close()
