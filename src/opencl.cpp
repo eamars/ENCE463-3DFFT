@@ -137,19 +137,8 @@ float run_opencl_cpu(int N)
 	// fetch the result
 	err = clEnqueueReadBuffer(queue, cl_buffer, CL_TRUE, 0, buffer_size, X, 0, NULL, NULL);
 
-	// release the opencl memory object
-	clReleaseMemObject(cl_buffer);
-
-	free(X);
-
-	// release the plan
-	clfftTeardown();
-
 	// print the output array
-	
-	// printf("OpenCL CPU result");
-	
-	/*
+	printf("OpenCL CPU result\n");
 	for (size_t i = 0; i<N0; ++i) {
 		for (size_t j = 0; j<N1; ++j) {
 			for (size_t k = 0; k<N2; ++k) {
@@ -160,7 +149,13 @@ float run_opencl_cpu(int N)
 		}
 		printf("\n");
 	}
-	*/
+
+	// release the opencl memory object
+	clReleaseMemObject(cl_buffer);
+	free(X);
+
+	// release the plan
+	clfftTeardown();	
 
 	// release opencl working objects
 	clReleaseCommandQueue(queue_cpu);
@@ -300,6 +295,21 @@ float run_opencl_gpu(int N)
 	// fetch the result
 	err = clEnqueueReadBuffer(queue, cl_buffer, CL_TRUE, 0, buffer_size, X, 0, NULL, NULL);
 
+	// print the output array
+	/*
+	printf("OpenCL GPU Result\n");
+	for (size_t i = 0; i<N0; ++i) {
+	for (size_t j = 0; j<N1; ++j) {
+	for (size_t k = 0; k<N2; ++k) {
+	size_t idx = 2 * (k + j*N2 + i*N1*N2);
+	printf("(%f, %f) ", X[idx], X[idx + 1]);
+	}
+	printf("\n");
+	}
+	printf("\n");
+	}
+	*/
+
 	// release the opencl memory object
 	clReleaseMemObject(cl_buffer);
 	free(X);
@@ -307,22 +317,7 @@ float run_opencl_gpu(int N)
 	// release the plan
 	clfftTeardown();
 
-	// print the output array
 	
-	// printf("OpenCL GPU Result\n");
-	
-	/*
-	for (size_t i = 0; i<N0; ++i) {
-		for (size_t j = 0; j<N1; ++j) {
-			for (size_t k = 0; k<N2; ++k) {
-				size_t idx = 2 * (k + j*N2 + i*N1*N2);
-				printf("(%f, %f) ", X[idx], X[idx + 1]);
-			}
-			printf("\n");
-		}
-		printf("\n");
-	}
-	*/
 
 	// release opencl working objects
 	clReleaseCommandQueue(queue_gpu);
