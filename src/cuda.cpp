@@ -7,7 +7,7 @@
 
 #include "utils.hpp"
 
-int run_cuda(int N)
+float run_cuda(int N)
 {
 	// cuda perform profiler
 	cudaEvent_t start, stop;
@@ -63,7 +63,7 @@ int run_cuda(int N)
 
 	// print performance
 	cudaEventElapsedTime(&time_interval, start, stop);
-	printf("Total time taken for performing FFT on GPU (CUDA): %0.6f\n", time_interval);
+	// printf("Total time taken for performing FFT on GPU (CUDA): %0.6f\n", time_interval);
 
 	// copy device memory to host
 	cudaMemcpy(host_signal, device_signal, mem_size, cudaMemcpyDeviceToHost);
@@ -90,6 +90,6 @@ int run_cuda(int N)
 
 	cudaDeviceReset();
 
-	return 0;
+	return time_interval;
 }
 
